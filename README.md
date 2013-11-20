@@ -5,13 +5,10 @@
 ## Installation
 
 The easiest way is to keep `karma-commonjs-preprocessor` as a devDependency in your `package.json`.
-```json
-{
-  "devDependencies": {
-    "karma": "~0.10",
+```coffeescript
+  "devDependencies":
+    "karma": "~0.10"
     "karma-commonjs-preprocessor": "~0.1"
-  }
-}
 ```
 
 You can simple do it by:
@@ -27,27 +24,37 @@ The wrapper code is based on [brunch.io](https://github.com/brunch/brunch) and a
 
 So if you have existing bundles which are build from brunch or do include [brunchs require.js](https://github.com/brunch/commonjs-require-definition) directly you can use this preprocessor.
 
+An example karma.conf.coffee could look like this:
+```coffeescript
+module.exports = (config) ->
+  config.set
+    files: [
+      'bower_components/commonjs-require-definition/require.js'
+      'src/**/*.coffee'
+    ]
+
+    preprocessors:
+      'src/**/*.coffee': ['commonjs', 'coffee']
+      'spec/**/*.coffee': ['coffee']
+
+    plugins: [
+      'karma-coffee-preprocessor',
+      'karma-commonjs-preprocessor'
+    ]
+```
+
 ## Why not just bundling before running karma?
 
 Creating a single bundle means "recompiling" the bundle anytime any file changes. On big project, this can significantly slow down the development. This plugin processes only files that changed.
 
-
-## Configuration
-Following code shows the default configuration...
-```js
-// karma.conf.js
-module.exports = function(config) {
-  config.set({
-    preprocessors: {
-      '**/*.coffee': ['commonjs']
-    }
-  });
-};
-```
-
 ## Credits
 
-This plugin is basically a mix between [grunt-commonjs-coffee](https://github.com/tuxracer/grunt-commonjs-coffee) and [karma-commonjs](https://github.com/karma-runner/karma-commonjs) adapted to work with karma instead.
+This plugin is basically a mix between [grunt-commonjs-coffee](https://github.com/tuxracer/grunt-commonjs-coffee) and [karma-commonjs](https://github.com/karma-runner/karma-commonjs).
+
+
+## License
+
+MIT
 
 ----
 
