@@ -1,0 +1,32 @@
+{
+  "name": "karma-commonjs-preprocessor",
+  "version": "0.1.0",
+  "description": "A Karma plugin. Wrap JS or Coffee Files into Commonjs on the fly.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/johannesbecker/karma-commonjs-preprocessor.git"
+  },
+  "keywords": [
+    "karma-plugin",
+    "karma-preprocessor",
+    "commonjs",
+    "coffee"
+  ],
+  "author": "Johannes Becker <jb@jbecker.it>",
+  "peerDependencies": {
+    "karma": ">=0.9"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-npm": "~0.0.2",
+    "grunt-bump": "~0.0.7",
+    "grunt-auto-release": "~0.0.2"
+  },
+  "contributors": [
+  ]
+}
