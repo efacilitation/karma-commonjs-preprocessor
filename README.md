@@ -19,9 +19,17 @@ You can simple do it by:
 npm install karma-commons-preprocessor --save-dev
 ```
 
-## CommonJS register/loader
+## How is this different from karma-commonjs?
 
-This plugin was developed based on the CommonJS Loader from brunch.io. So since the files get wrapped into a require.register() function call you need to load a appropiate handler first. You can use https://github.com/brunch/commonjs-require-definition (e.g. load 'bower_components/commonjs-require-definition/require.js' in the karma file list first) for this or just embed a file build from brunch first.
+[karma-commonjs](https://github.com/karma-runner/karma-commonjs) is a complete framework handling wrapping, register and loading all defined files in commonjs. If one wants to only wrap coffee- or javascript-files into the commonjs format and having some other modules handling the registering and loading this plugin is for you. That's why its just a preprocessor and not a complete framework.
+
+The wrapper code is based on [brunch.io](https://github.com/brunch/brunch) and adapted from [grunt-commonjs-coffee](https://github.com/tuxracer/grunt-commonjs-coffee).
+
+So if you have existing bundles which are build from brunch or do include [brunchs require.js](https://github.com/brunch/commonjs-require-definition) directly you can use this preprocessor.
+
+## Why not just bundling before running karma?
+
+Creating a single bundle means "recompiling" the bundle anytime any file changes. On big project, this can significantly slow down the development. This plugin processes only files that changed.
 
 
 ## Configuration
@@ -36,6 +44,10 @@ module.exports = function(config) {
   });
 };
 ```
+
+## Credits
+
+This plugin is basically a fork from [grunt-commonjs-coffee](https://github.com/tuxracer/grunt-commonjs-coffee) adapted to work with karma instead.
 
 ----
 
