@@ -18,9 +18,7 @@ npm install karma-commons-preprocessor --save-dev
 
 ## How is this different from karma-commonjs?
 
-[karma-commonjs](https://github.com/karma-runner/karma-commonjs) is a complete framework handling wrapping, register and loading all defined files in commonjs. If one wants to only wrap coffee- or javascript-files into the commonjs format and having some other modules handling the registering and loading this plugin is for you. That's why its just a preprocessor and not a complete framework.
-
-The wrapper code is based on [brunch.io](https://github.com/brunch/brunch) and adapted from [grunt-commonjs-coffee](https://github.com/tuxracer/grunt-commonjs-coffee).
+[karma-commonjs](https://github.com/karma-runner/karma-commonjs) is a complete framework handling wrapping, registering and loading all defined files in commonjs. If you want to only wrap coffee- or javascript-files into the commonjs format and having some other modules handling the registering and loading this plugin is for you. The wrapper code is based on [brunch.io](https://github.com/brunch/brunch) and adapted from [grunt-commonjs-coffee](https://github.com/tuxracer/grunt-commonjs-coffee).
 
 So if you have existing bundles which are build from brunch or do include [brunchs require.js](https://github.com/brunch/commonjs-require-definition) directly you can use this preprocessor.
 
@@ -31,6 +29,7 @@ module.exports = (config) ->
     files: [
       'bower_components/commonjs-require-definition/require.js'
       'src/**/*.coffee'
+      'spec/**/*.coffee'
     ]
 
     preprocessors:
@@ -42,6 +41,9 @@ module.exports = (config) ->
       'karma-commonjs-preprocessor'
     ]
 ```
+
+This loads the require.js first and puts `require.register` into the global namespace. It then packages all coffee Files in the src directoy into commonjs modules and last but not least just executes the specs.
+
 
 ## Why not just bundling before running karma?
 
