@@ -47,7 +47,7 @@ module.exports = function(config) {
 
 ## Credits
 
-This plugin is basically a fork from [grunt-commonjs-coffee](https://github.com/tuxracer/grunt-commonjs-coffee) adapted to work with karma instead.
+This plugin is basically a mix between [grunt-commonjs-coffee](https://github.com/tuxracer/grunt-commonjs-coffee) and [karma-commonjs](https://github.com/karma-runner/karma-commonjs) adapted to work with karma instead.
 
 ----
 
