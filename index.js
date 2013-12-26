@@ -5,7 +5,9 @@ var createCommonjsPreprocessor = function(args, config, logger, helper) {
 
   var log = logger.create('preprocessor.commonjs');
   var defaultOptions = {
-    isCoffeeScript: true
+    registerCmd: "require.register",
+    isCoffeeScript: false,
+    pathReplace: true
   };
   var options = helper.merge(defaultOptions, args.options || {}, config.options || {});
 
@@ -14,7 +16,7 @@ var createCommonjsPreprocessor = function(args, config, logger, helper) {
     // we assume that we're in node_modules/karma-commonjs-preprocessor
     // therefore we just strip everything that is over the ../../ level
     var karmaRoot = path.normalize(__dirname + '/../..');
-    return origPath.replace(karmaRoot + '/', '');    
+    return origPath.replace(karmaRoot + '/', '');
   };
 
   var indentStr = function(str) {
@@ -30,9 +32,9 @@ var createCommonjsPreprocessor = function(args, config, logger, helper) {
     definePath = filepath.replace(/\.\w+$/, '');
     if (options.isCoffeeScript || isCoffeeScript(filepath)) {
       content = indentStr(content);
-      return "window.require.register '" + definePath + "': (exports, require, module) ->\n " + content + "\n";
+      return "window." + options.registerCmd + " '" + definePath + "': (exports, require, module) ->\n " + content + "\n";
     } else {
-      return "window.require.register({'" + definePath + "': function(exports, require, module) {" + content + "}});\n";
+      return "window." + options.registerCmd + "({'" + definePath + "': function(exports, require, module) {" + content + "}});\n";
     }
   };
 
@@ -44,6 +46,13 @@ var createCommonjsPreprocessor = function(args, config, logger, helper) {
     log.debug('Processing "%s".', file.originalPath);
 
     file.path = rebasePath(file.originalPath);
+    log.debug('Rebased Path "%s".', file.path);
+
+    if (options.pathReplace && typeof options.pathReplace == "function") {
+      file.path = options.pathReplace(file.path);
+      log.debug('applied pathReplace "%s".', file.path);
+    }
+
 
     try {
       result = wrapDefine(file.path, content)

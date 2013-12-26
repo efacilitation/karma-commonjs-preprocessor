@@ -1,7 +1,7 @@
 {
   "name": "karma-commonjs-preprocessor",
-  "version": "0.1.0",
-  "description": "A Karma plugin. Wrap JS or Coffee Files into Commonjs on the fly.",
+  "version": "0.1.1",
+  "description": "Preprocessor which enables you to load CoffeScript or Javascript CommonJS Modules on the fly using custom register and loader code.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,7 +18,7 @@
   ],
   "author": "Johannes Becker <jb@jbecker.it>",
   "peerDependencies": {
-    "karma": ">=0.9"
+    "karma": ">=0.10"
   },
   "license": "MIT",
   "devDependencies": {
