@@ -1,6 +1,6 @@
 # karma-commonjs-preprocessor
 
-> Preprocessor to wrap CoffeScript or Javascript Files into CommonJS Format on the fly.
+Preprocessor which enables you to load CoffeScript or Javascript CommonJS Modules on the fly using custom register and loader code.
 
 ## Installation
 
@@ -19,7 +19,9 @@ npm install karma-commons-preprocessor --save-dev
 ## Options
 
 `registerCmd` Allows you to set the name of the function to wrap your module into. Default: "require.register"
+
 `isCoffeeScript` Allows  you to force enable or disable wrapping into coffee-script Format. If its set to false we decide based on the file-extension. Default: false
+
 `pathReplace` Allows you to set filterer function for module names, for example, change all app/file to file. Default: false
 
 
@@ -38,9 +40,9 @@ Creating a single bundle means "recompiling" the bundle anytime any file changes
 
 ## How is this different from karma-commonjs?
 
-[karma-commonjs](https://github.com/karma-runner/karma-commonjs) is a complete framework handling wrapping, register and loading all defined files in commonjs. If one wants to only wrap coffee- or javascript-files into the commonjs format and having some other modules handling the registering and loading this plugin is for you. That's why its just a preprocessor and not a complete framework.
+[karma-commonjs](https://github.com/karma-runner/karma-commonjs) is a complete framework handling wrapping, registering and loading all files matching the preprocessor.
 
-The wrapper code is based on [brunch.io](https://github.com/brunch/brunch) and adapted from [grunt-commonjs-coffee](https://github.com/tuxracer/grunt-commonjs-coffee).
+The wrapper code of this preprocessor is based on [brunch.io](https://github.com/brunch/brunch) and the mechanism adapted from [grunt-commonjs-coffee](https://github.com/tuxracer/grunt-commonjs-coffee). It only wraps your code into a registering function.
 
 So if you have existing bundles which are build from brunch or do include [brunchs require.js](https://github.com/brunch/commonjs-require-definition) directly you can use this preprocessor.
 
@@ -64,10 +66,20 @@ module.exports = (config) ->
     ]
 ```
 
+This loads the require.js first and puts `require.register` into the global namespace. It then packages all coffee Files in the src directoy into commonjs modules and last but not least just executes the specs.
+
+The resulting registering Code looks like this:
+
+```javascript
+window.require.register({'PATH/TO/FILE.JS': function(exports, require, module) {
+  FILE_CONTENT
+}})
+```
+
+
 ## Credits
 
 This plugin is basically a mix between [grunt-commonjs-coffee](https://github.com/tuxracer/grunt-commonjs-coffee) and [karma-commonjs](https://github.com/karma-runner/karma-commonjs).
-
 
 
 ## License
