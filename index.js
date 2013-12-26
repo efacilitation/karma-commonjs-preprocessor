@@ -7,7 +7,7 @@ var createCommonjsPreprocessor = function(args, config, logger, helper) {
   var defaultOptions = {
     registerCmd: "require.register",
     isCoffeeScript: false,
-    pathReplace: true
+    pathReplace: false
   };
   var options = helper.merge(defaultOptions, args.options || {}, config.options || {});
 
