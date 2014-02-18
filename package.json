@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/johannesbecker/karma-commonjs-preprocessor.git"
+    "url": "git://github.com/efacilitation/karma-commonjs-preprocessor.git"
   },
   "keywords": [
     "karma-plugin",
