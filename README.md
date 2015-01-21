@@ -13,7 +13,7 @@ The easiest way is to keep `karma-commonjs-preprocessor` as a devDependency in y
 
 You can simple do it by:
 ```bash
-npm install karma-commons-preprocessor --save-dev
+npm install karma-commonjs-preprocessor --save-dev
 ```
 
 ## Options
