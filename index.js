@@ -16,7 +16,7 @@ var createCommonjsPreprocessor = function(args, config, logger, helper) {
     // we assume that we're in node_modules/karma-commonjs-preprocessor
     // therefore we just strip everything that is over the ../../ level
     var karmaRoot = path.normalize(__dirname + '/../..');
-    return origPath.replace(karmaRoot + '/', '');
+    return origPath.substring(karmaRoot.length + 1);
   };
 
   var indentStr = function(str) {
@@ -55,8 +55,8 @@ var createCommonjsPreprocessor = function(args, config, logger, helper) {
 
 
     try {
-      result = wrapDefine(file.path, content)
-      done(result)
+      result = wrapDefine(file.path, content);
+      done(result);
     } catch (e) {
       log.error('%s\n  at %s', e.message, file.originalPath);
       return;
