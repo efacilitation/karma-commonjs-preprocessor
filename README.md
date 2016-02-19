@@ -1,3 +1,8 @@
+# DEPRECATED WARNING
+
+As we are not using this anymore we will not maintain this anymore. If someone wants to maintain this project, just drop us a line and we will transfer the repo to you. Else we will delete this repo in the next months.
+
+
 # karma-commonjs-preprocessor
 
 Preprocessor which enables you to load CoffeScript or Javascript CommonJS Modules on the fly using custom register and loader code.
